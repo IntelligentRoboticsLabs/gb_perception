@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+  <name>gb_perception</name>
+  <version>0.1.0</version>
+  <description>gb_perception</description>
+
+  <author email="david.vargas@urjc.es">David Vargas</author>
+  <maintainer email="david.vargas@urjc.es">David Vargas</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>std_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>bica_planning</build_depend>
+  <build_depend>bica_graph</build_depend>
+  <build_depend>roslint</build_depend>
+
+
+  <run_depend>std_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>bica_planning</run_depend>
+  <run_depend>bica_graph</run_depend>
+
+  <export>
+    <nodelet plugin="${prefix}/nodelets.xml"/>
+  </export>
+</package>

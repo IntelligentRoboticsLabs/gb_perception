@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name = "camera_topic" value = "/camera/rgb/image_raw" />
+    <node pkg="nodelet" type="nodelet" name="zbar_manager"  args="manager"/>
+
+    <node pkg="zbar_ros" type="barcode_reader_node" name="barcode_reader">
+        <!--param name="throttle_repeated_barcodes" type="double" value="2.0"/-->
+        <param name="camera_topic" type="string" value="$(arg camera_topic)"/>
+    </node>
+
+    <node pkg="gb_perception" type="qr_perception" name="qr_perception" output="screen">
+    </node>
+
+</launch>
