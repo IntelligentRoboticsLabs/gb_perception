@@ -43,7 +43,7 @@ QR_perception::QR_perception(const ros::NodeHandle& nh) : nh_(nh)
 
 void QR_perception::qrCallback(const std_msgs::String::ConstPtr& qr_msg)
 {
-  if (qr_msg->data.c_str() != last_response_)
+  if (qr_msg->data.c_str() != last_response_ && qr_msg->data.c_str() != "stop")
   {
     last_response_ = qr_msg->data.c_str();
     ROS_INFO("########### I saw a new msg! [%s]", qr_msg->data.c_str());
