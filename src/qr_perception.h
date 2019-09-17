@@ -39,6 +39,7 @@
 #include <bica_graph/graph_client.h>
 #include <string>
 #include <iostream>
+#include <boost/foreach.hpp>
 
 #ifndef QR_PERCEPTION_H
 #define QR_PERCEPTION_H
@@ -48,11 +49,24 @@ class QR_perception
 public:
     explicit QR_perception(const ros::NodeHandle& nh);
 protected:
+    void QRonStandByState(const std_msgs::String::ConstPtr& qr_msg);
+    void QRonRecogState(const std_msgs::String::ConstPtr& qr_msg);
+    void QRonOrderState(const std_msgs::String::ConstPtr& qr_msg);
     void qrCallback(const std_msgs::String::ConstPtr& qr_msg);
+    void timerCallback2order(const ros::TimerEvent&);
+    void timerCallback2standby(const ros::TimerEvent&);
 private:
     ros::NodeHandle nh_;
     ros::Subscriber qr_reader_sub_;
     bica_graph::GraphClient graph_;
     std::string last_response_, robot_id_;
+    std::vector<std::string> order;
+    ros::Timer timer_recognized;
+    ros::Timer timer_order;
+    ros::Time last_time_;
+    int state_;
+    static const int STAND_BY = 0;
+  	static const int RECOGNIZED = 1;
+  	static const int ORDER = 2;
 };
 #endif  // QR_PERCEPTION_H
