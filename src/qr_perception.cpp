@@ -106,7 +106,16 @@ void QR_perception::timerCallback2standby(const ros::TimerEvent&)
   ROS_INFO("########### state_ = STAND_BY");
   state_ = STAND_BY;
 
-  std::vector<bica_graph::StringEdge> ask_edges = graph_.get_string_edges_by_data("ask: [[:alnum:]_[:punct:]]*");
+  std::string regex = "(ask)(.*)";
+  std::vector<bica_graph::StringEdge> ask_edges = graph_.get_string_edges_by_data(regex);
+
+  /*
+  for (auto edge : graph_.get_string_edges())
+  {
+    ROS_INFO("regex_match(%s, %s): %d", (edge.get()).c_str(), regex.c_str(), std::regex_match (edge.get(), std::regex(regex)));
+  }
+  */
+  
   for (auto edge : ask_edges)
   {
     ROS_INFO("I found ASK edge");
