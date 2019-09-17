@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name = "camera_topic" value = "/camera/rgb/image_raw" />
+  <arg name = "camera_topic" value = "/xtion/rgb/image_raw" />
     <node pkg="nodelet" type="nodelet" name="zbar_manager"  args="manager"/>
 
     <node pkg="zbar_ros" type="barcode_reader_node" name="barcode_reader">
